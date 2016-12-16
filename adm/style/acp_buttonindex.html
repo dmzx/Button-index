@@ -1,0 +1,83 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_ACP_BUTTONINDEX_TITLE}</h1>
+
+<!-- BEGIN ext_update -->
+<fieldset>
+	<legend>{L_BUTTONINDEX_VERSION_CHECK}</legend>
+	<p style="font-weight: bold; color: <!-- IF ext_update.BUTTONINDEX_S_UP_TO_DATE -->#228822<!-- ELSE -->#BC2A4D<!-- ENDIF -->;">{ext_update.BUTTONINDEX_UP_TO_DATE}</p>
+	<dl>
+		<dt><label>{L_BUTTONINDEX_CURRENT_VERSION}{L_COLON}</label></dt>
+		<dd><strong>{ext_update.BUTTONINDEX_CURRENT_VERSION}</strong></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_BUTTONINDEX_LATEST_VERSION}{L_COLON}</label></dt>
+		<dd><strong>{ext_update.BUTTONINDEX_LATEST_VERSION}</strong></dd>
+	</dl>
+	<dl>
+		<dt><label>{L_BUTTONINDEX_AUTHOR}{L_COLON}</label></dt>
+		<dd><strong>{ext_update.BUTTONINDEX_AUTHOR}</strong></dd>
+	</dl>
+	<!-- IF not ext_update.BUTTONINDEX_S_UP_TO_DATE -->
+		<dl>
+			<dt><label>{L_BUTTONINDEX_DOWNLOAD_LATEST}{L_COLON}</label></dt>
+			<dd><strong><a href="{ext_update.BUTTONINDEX_DOWNLOAD}">{L_BUTTONINDEX_DOWNLOAD} {ext_update.BUTTONINDEX_TITLE} {ext_update.BUTTONINDEX_LATEST_VERSION}</a></strong></dd>
+		</dl>
+		<dl>
+			<dt><label>{L_BUTTONINDEX_ANNOUNCEMENT_TOPIC}{L_COLON}</label></dt>
+			<dd><strong><a href="{ext_update.BUTTONINDEX_ANNOUNCEMENT}">{L_BUTTONINDEX_RELEASE_ANNOUNCEMENT}</a></strong></dd>
+		</dl>
+	<!-- ENDIF -->
+</fieldset>
+<!-- END ext_update -->
+
+<form id="acp_buttonindex" method="post" action="{U_ACTION}">
+	<fieldset>
+		<legend>{L_ACP_BUTTONINDEX_CONFIG}</legend>
+		<dl>
+			<dt>
+				<label for="buttonindex_enable">{L_BUTTONINDEX_ENABLE}{L_COLON}</label><br />
+				<span>{L_BUTTONINDEX_ENABLE_EXPLAIN}</span></dt>
+			</dt>
+			<dd>
+				<label><input type="radio" class="radio" id="buttonindex_enable" name="buttonindex_enable" value="1" <!-- IF BUTTONINDEX_ENABLE -->checked="checked"<!-- ENDIF -->/> {L_YES}</label>
+				<label><input type="radio" class="radio" name="buttonindex_enable" value="0" <!-- IF not BUTTONINDEX_ENABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}</label>
+			</dd>
+		</dl>
+		<dl>
+			<dt>
+				<label for="buttonindex_respository">{L_BUTTONINDEX_REPOSITORY}{L_COLON}</label><br />
+				<span>{L_BUTTONINDEX_REPOSITORY_EXPLAIN}</span>
+			</dt>
+			<dd>
+				<b>{L_BUTTONINDEX_REPOSITORY} <span style="margin-left:210px;">{L_BUTTONINDEX_REPOSITORY_TEXT}</span></b>
+				<!-- BEGIN buttonindex -->
+				<p id="buttonindex">
+					<input name="buttonindex[]" type="text" value="{buttonindex.BUTTONINDEX}" size="40" placeholder="{L_BUTTONINDEX_PLACEHOLDER}">
+					<input name="buttonindex_text[]" type="text" value="{buttonindex.BUTTONINDEX_TEXT}" size="30" placeholder="{L_BUTTONINDEX_PLACEHOLDER_NAME}">
+				</p>
+				<!-- END buttonindex -->
+				<dd>
+					<input value="{L_BUTTONINDEX_MORE_LINKS}" onclick="add_this('buttonindex').value" type="button">
+				</dd>
+			</dd>
+		</dl>
+	</fieldset>
+	<p class="submit-buttons">
+		{S_FORM_TOKEN}
+		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
+		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
+	</p>
+</form>
+
+<script>
+function add_this(id)
+{
+	var tableRow = document.getElementById(id);
+	var tableRowClone = tableRow.cloneNode(true);
+	$('input', tableRowClone).val("");
+	tableRow.parentNode.appendChild(tableRowClone, tableRow.previousSibling);
+}
+</script>
+
+<!-- INCLUDE overall_footer.html -->
