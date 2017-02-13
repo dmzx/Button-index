@@ -2,34 +2,7 @@
 
 <h1>{L_ACP_BUTTONINDEX_TITLE}</h1>
 
-<!-- BEGIN ext_update -->
-<fieldset>
-	<legend>{L_BUTTONINDEX_VERSION_CHECK}</legend>
-	<p style="font-weight: bold; color: <!-- IF ext_update.BUTTONINDEX_S_UP_TO_DATE -->#228822<!-- ELSE -->#BC2A4D<!-- ENDIF -->;">{ext_update.BUTTONINDEX_UP_TO_DATE}</p>
-	<dl>
-		<dt><label>{L_BUTTONINDEX_CURRENT_VERSION}{L_COLON}</label></dt>
-		<dd><strong>{ext_update.BUTTONINDEX_CURRENT_VERSION}</strong></dd>
-	</dl>
-	<dl>
-		<dt><label>{L_BUTTONINDEX_LATEST_VERSION}{L_COLON}</label></dt>
-		<dd><strong>{ext_update.BUTTONINDEX_LATEST_VERSION}</strong></dd>
-	</dl>
-	<dl>
-		<dt><label>{L_BUTTONINDEX_AUTHOR}{L_COLON}</label></dt>
-		<dd><strong>{ext_update.BUTTONINDEX_AUTHOR}</strong></dd>
-	</dl>
-	<!-- IF not ext_update.BUTTONINDEX_S_UP_TO_DATE -->
-		<dl>
-			<dt><label>{L_BUTTONINDEX_DOWNLOAD_LATEST}{L_COLON}</label></dt>
-			<dd><strong><a href="{ext_update.BUTTONINDEX_DOWNLOAD}">{L_BUTTONINDEX_DOWNLOAD} {ext_update.BUTTONINDEX_TITLE} {ext_update.BUTTONINDEX_LATEST_VERSION}</a></strong></dd>
-		</dl>
-		<dl>
-			<dt><label>{L_BUTTONINDEX_ANNOUNCEMENT_TOPIC}{L_COLON}</label></dt>
-			<dd><strong><a href="{ext_update.BUTTONINDEX_ANNOUNCEMENT}">{L_BUTTONINDEX_RELEASE_ANNOUNCEMENT}</a></strong></dd>
-		</dl>
-	<!-- ENDIF -->
-</fieldset>
-<!-- END ext_update -->
+<p><img src="https://img.shields.io/badge/{{ lang('Version') }}-{{ BUTTONINDEX_VERSION }}-green.svg?style=plastic" /></p>
 
 <form id="acp_buttonindex" method="post" action="{U_ACTION}">
 	<fieldset>

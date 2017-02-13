@@ -23,9 +23,6 @@ class admin_controller
 	/** @var \phpbb\user */
 	protected $user;
 
-	/** @var ContainerBuilder */
-	protected $phpbb_container;
-
 	/** @var \phpbb\db\driver\driver_interface */
 	protected $db;
 
@@ -45,7 +42,6 @@ class admin_controller
 	 * @param \phpbb\template\template										$template
 	 * @param \\phpbb\log\log_interface										$log
 	 * @param \phpbb\user													$user
-	 * @param \Symfony\Component\DependencyInjection\ContainerInterface 	$phpbb_container
 	 * @param \phpbb\db\driver\driver_interface								$db
 	 * @param \phpbb\request\request										$request
 	 * @param string														$buttonindex_table
@@ -55,16 +51,15 @@ class admin_controller
 		\phpbb\template\template $template,
 		\phpbb\log\log_interface $log,
 		\phpbb\user $user,
-		$phpbb_container,
 		\phpbb\db\driver\driver_interface $db,
 		\phpbb\request\request $request,
-		$buttonindex_table)
+		$buttonindex_table
+	)
 	{
 		$this->config 				= $config;
 		$this->template 			= $template;
 		$this->log 					= $log;
 		$this->user 				= $user;
-		$this->phpbb_container 		= $phpbb_container;
 		$this->db 					= $db;
 		$this->request 				= $request;
 		$this->buttonindex_table 	= $buttonindex_table;
@@ -80,7 +75,7 @@ class admin_controller
 	{
 		add_form_key('acp_buttonindex');
 
-		$this->version_check = $this->phpbb_container->get('dmzx.buttonindex.version.check');
+		$this->user->add_lang_ext('dmzx/buttonindex', 'acp_buttonindex');
 
 		$sql = 'SELECT *
 			FROM '. $this->buttonindex_table;
@@ -163,9 +158,9 @@ class admin_controller
 
 		$this->template->assign_vars(array(
 			'U_ACTION'				=> $this->u_action,
-			'BUTTONINDEX_ENABLE'		=> $buttonindex_data['buttonindex_enable'],
+			'BUTTONINDEX_ENABLE'	=> $buttonindex_data['buttonindex_enable'],
+			'BUTTONINDEX_VERSION'	=> $this->config['buttonindex_version'],
 		));
-		$this->version_check->check();
 	}
 
 	/**

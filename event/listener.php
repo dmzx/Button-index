@@ -42,7 +42,8 @@ class listener implements EventSubscriberInterface
 		\phpbb\user $user,
 		\phpbb\db\driver\driver_interface $db,
 		\phpbb\request\request $request,
-		$buttonindex_table)
+		$buttonindex_table
+	)
 	{
 		$this->template 			= $template;
 		$this->user 				= $user;
@@ -54,19 +55,8 @@ class listener implements EventSubscriberInterface
 	public static function getSubscribedEvents()
 	{
 		return array(
-			'core.user_setup'	=> 'load_language_on_setup',
-			'core.page_header' => 'page_header',
+			'core.page_header' 	=> 'page_header',
 		);
-	}
-
-	public function load_language_on_setup($event)
-	{
-		$lang_set_ext 	= $event['lang_set_ext'];
-		$lang_set_ext[] = array(
-			'ext_name'	=> 'dmzx/buttonindex',
-			'lang_set'	=> 'common',
-		);
-		$event['lang_set_ext'] = $lang_set_ext;
 	}
 
 	public function page_header($event)

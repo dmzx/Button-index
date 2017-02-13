@@ -1,14 +1,5 @@
 imports:
     - { resource: tables.yml }
-parameters:
-    dmzx.buttonindex.version_data:
-        author: dmzx & martin
-        title: Button index
-        version: buttonindex_version
-        file:
-            - www.dmzx-web.net
-            - /versions
-            - buttonindex_version.json
 services:
     dmzx.buttonindex.admin.controller:
         class: dmzx\buttonindex\controller\admin_controller
@@ -17,19 +8,9 @@ services:
             - '@template'
             - '@log'
             - '@user'
-            - '@service_container'
             - '@dbal.conn'
             - '@request'
             - '%tables.buttonindex_table%'
-    dmzx.buttonindex.version.check:
-        class: dmzx\buttonindex\includes\version_check
-        scope: prototype
-        arguments:
-            - '%dmzx.buttonindex.version_data%'
-            - '@config'
-            - '@version_helper'
-            - '@template'
-            - '@user'
     dmzx.buttonindex.listener:
         class: dmzx\buttonindex\event\listener
         arguments:

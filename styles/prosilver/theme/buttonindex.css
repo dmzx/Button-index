@@ -24,7 +24,6 @@
 	margin-bottom: 5px;
 	margin-top: 1px;
 }
-
 .buttons:hover,
 .buttons:focus {
 	border-color: #0A8ED0;
@@ -36,7 +35,6 @@
 	text-decoration: none;
     outline: none;
 }
-
 .action-bar.compact a.mark-read.rightside {
 	display: none !important;
 }
