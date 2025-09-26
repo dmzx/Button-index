@@ -1,2 +1,2 @@
 parameters:
-    tables.buttonindex_table: %core.table_prefix%buttonindex
+    tables.buttonindex_table: '%core.table_prefix%buttonindex'

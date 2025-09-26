@@ -1,10 +1,111 @@
-<!-- IF U_MARK_FORUMS -->
-	<a href="{U_MARK_FORUMS}" class="buttons rightside" accesskey="m" data-ajax="mark_forums_read">{L_MARK_FORUMS_READ}</a>
-<!-- ENDIF -->
-<!-- IF BUTTONINDEX_ENABLE and S_USER_LOGGED_IN -->
-	<!-- BEGIN buttonindex -->
-		<a href="{buttonindex.BUTTONINDEX}" target="_blank" class="buttons" title="{buttonindex.BUTTONINDEX_TEXT}">
-			<span>{buttonindex.BUTTONINDEX_TEXT}</span> <i class="icon fa fa-link" aria-hidden="true"></i>
-		</a>
-	<!-- END buttonindex -->
-<!-- ENDIF -->
+{% if BUTTONINDEX_ENABLE && S_USER_LOGGED_IN && not S_IS_BOT %}
+{% if BUTTONINDEX_BOX_ENABLE %}
+{% if BUTTONINDEX_COLLAPSE_ENABLE %}<a class="category{% if S_BUTTONINDEX_HIDDEN %} hidden-category{% endif %}" style="display: none; height: 0"></a>{% endif %}
+{% EVENT dmzx_mchat_before %}
+<div id="buttonindex" class="forabg">
+	<div class="inner">
+		<ul class="topiclist">
+			<li class="header">
+				<dl class="row-item">
+					<dt><div class="list-inner">{{ lang('LINKS_INFO') }}</div></dt>
+					<dd style="display: none"></dd>
+				</dl>
+				{% if BUTTONINDEX_COLLAPSE_ENABLE %}
+				{% set S_CC_FORUM_HIDDEN = S_BUTTONINDEX_HIDDEN %}
+				{% set U_CC_COLLAPSE_URL = U_BUTTONINDEX_COLLAPSE_URL %}
+				{% include '@phpbb_collapsiblecategories/collapsible_categories_button.html' ignore missing %}
+				{% endif %}
+			</li>
+		</ul>
+		<ul class="topiclist forums">
+			<li class="row">
+			{% endif %}
+				{% if U_MARK_FORUMS %}
+				<a href="{{ U_MARK_FORUMS }}" class="button rightside{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" accesskey="m" data-ajax="mark_forums_read"><i aria-hidden="true" class="icon fa-check-square-o fa-fw awesome_icon" style="vertical-align: middle"></i> {{ lang('MARK_FORUMS_READ') }}</a>
+				{% endif %}
+				<div class="slideshow-container"> 
+					<div class="nav"> 
+						<div class="dots">
+							{% if BUTTONINDEX_UCP_ENABLE %}
+							<span class="dot"></span>
+							{% endif %}
+							<span class="dot"></span> 
+						</div>
+						{% if BUTTONINDEX_UCP_ENABLE %}
+						<div class="mySlides fade">
+							<ul>
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="/ucp.php?i=ucp_main&mode=front">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> <span>{{ lang('UCP_SHORT') }}</span>
+									</a>
+								</li>
+								{% if S_BUTTONINDEX_KEYLISTED %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{BOARD_URL}ucp.php?i=-dmzx-keylisted-ucp-main_module" title="">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> {{ lang('LISTED_KEY') }}
+									</a>
+								</li>
+								{% endif %}
+								{% if S_BUTTONINDEX_YOUTUBEGALLERY %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{BOARD_URL}ucp.php?i=-dmzx-youtubegallery-ucp-youtubegallery_ucp_module&mode=main">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> {{ lang('UCP_VIDEO') }}
+									</a>
+								</li>
+								{% endif %}
+								{% if S_BUTTONINDEX_IMAGEUPLOAD %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{BOARD_URL}ucp.php?i=-dmzx-imageupload-ucp-imageupload_module&mode=main">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> {{ lang('UCP_UPLOADED') }}
+									</a>
+								</li>
+								{% endif %}
+								{% if S_BUTTONINDEX_FILEUPLOAD %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{BOARD_URL}ucp.php?i=-dmzx-fileupload-ucp-fileupload_module&mode=main">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> {{ lang('UCP_USER_FILES') }}
+									</a>
+								</li>
+								{% endif %}
+								{% if S_BUTTONINDEX_MCHAT %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{BOARD_URL}ucp.php?i=-dmzx-mchat-ucp-ucp_mchat_module&mode=configuration">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> {{ lang('UCP_MCHAT') }}
+									</a>
+								</li>
+								{% endif %}
+								{% if S_BUTTONINDEX_DONATION %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{BOARD_URL}ucp.php?i=-dmzx-donation-ucp-donation_module&mode=main">
+									<i class="icon fa fa-user-o ucp_icon" aria-hidden="true"></i> {{ lang('UCP_DONATION') }}
+									</a>
+								</li>
+								{% endif %}
+							</ul>
+						</div>
+						{% endif %}
+						<div class="mySlides{% if BUTTONINDEX_UCP_ENABLE %} fade{% endif %}">
+							<ul>
+							{% for buttonindex in loops.buttonindex %}
+								<li>
+									<a class="button{% if BUTTONINDEX_STYLE_ENABLE %} special{% endif %}" href="{{ buttonindex.BUTTONINDEX }}" title="{{ buttonindex.BUTTONINDEX }}">
+									{% if BUTTONINDEX_IMAGE_ENABLE && buttonindex.BUTTONINDEX_FAV %}
+									<img src="{BOARD_URL}images/{{ BUTTONINDEX_IMAGE_FOLDER }}/{{ buttonindex.BUTTONINDEX_FAV }}" alt="">
+									{% else %}
+									<i class="icon fa fa-link" aria-hidden="true"></i>
+									{% endif %}
+									<span>{{ buttonindex.BUTTONINDEX_TEXT }}</span>
+									</a>
+								</li>
+							{% endfor %}
+							</ul>
+						</div>
+					</div>
+				</div>
+			{% if BUTTONINDEX_BOX_ENABLE %}
+			</li>
+		</ul>
+	</div>
+</div>
+{% endif %}
+{% endif %}

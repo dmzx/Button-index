@@ -2,7 +2,7 @@ imports:
     - { resource: tables.yml }
 services:
     dmzx.buttonindex.admin.controller:
-        class: dmzx\buttonindex\controller\admin_controller
+        class: 'dmzx\buttonindex\controller\admin_controller'
         arguments:
             - '@config'
             - '@template'
@@ -10,14 +10,20 @@ services:
             - '@user'
             - '@dbal.conn'
             - '@request'
+            - '@path_helper'
+            - '%core.root_path%'
             - '%tables.buttonindex_table%'
     dmzx.buttonindex.listener:
-        class: dmzx\buttonindex\event\listener
+        class: 'dmzx\buttonindex\event\listener'
         arguments:
+            - '@config'
             - '@template'
             - '@user'
             - '@dbal.conn'
             - '@request'
+            - '@ext.manager'
+            - '@service_container'
             - '%tables.buttonindex_table%'
+            - '@?phpbb.collapsiblecategories.operator'
         tags:
-            - { name: event.listener }
+            - { name: 'event.listener' }

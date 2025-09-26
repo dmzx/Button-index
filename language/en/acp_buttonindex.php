@@ -1,8 +1,8 @@
 <?php
 /**
 *
-* @package phpBB Extension - Button index
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @package phpBB Extension - Button Index
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -14,7 +14,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 // DEVELOPERS PLEASE NOTE
 //
@@ -32,15 +32,40 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-$lang = array_merge($lang, array(
-	'BUTTONINDEX_ENABLE'				=> 'Enable Button index',
-	'BUTTONINDEX_ENABLE_EXPLAIN'		=> 'Enable the Button on index extension.',
-	'BUTTONINDEX_PLACEHOLDER'			=> 'http://www.google.com',
-	'BUTTONINDEX_PLACEHOLDER_NAME'		=> 'Button name',
-	'BUTTONINDEX_REPOSITORY'			=> 'Set URL',
-	'BUTTONINDEX_REPOSITORY_EXPLAIN'	=> 'Add the URL and button name.<br /> URL can be relative like <em>viewforum.php?f=2</em>',
-	'BUTTONINDEX_REPOSITORY_TEXT'		=> 'Button name',
-	'BUTTONINDEX_MORE_LINKS'			=> 'Add button',
-	'BUTTONINDEX_SAVED'					=> 'Button index settings saved',
-	'BUTTONINDEX_VERSION'				=> 'Version',
-));
+$lang = array_merge($lang, [
+	'BUTTONINDEX_ENABLE'                   => 'Enable Button index',
+	'BUTTONINDEX_ENABLE_EXPLAIN'           => 'Enable the button index buttons.',
+	'BUTTONINDEX_NAME'                     => 'Button menu name',
+	'BUTTONINDEX_URL'                      => 'Set URL',
+	'BUTTONINDEX_URL_EXPLAIN'              => 'Add the URL.',
+	'BUTTONINDEX_FAV'                      => 'Add the favicon name',
+	'BUTTONINDEX_FAV_EXPLAIN'              => 'Enter favicon name here.',
+	'BUTTONINDEX_EDIT'                     => 'Edit button',
+	'BUTTONINDEX_ADD'                      => 'Add button',
+	'BUTTONINDEX_ADDED'                    => 'Added button',
+	'BUTTONINDEX_UPDATED'                  => 'Updated button index buttons',
+	'BUTTONINDEX_ERROR'                    => 'Error, fill all fields',
+	'BUTTONINDEX_NO_BUTTON'                => 'No Buttons menu yet',
+	'BUTTONINDEX_SAVED'                    => 'Button menu saved',
+	'BUTTONINDEX_URL_ACP'                  => 'Url entered',
+	'BUTTONINDEX_FAV_ACP'                  => 'Favicon entered',
+	'BUTTONINDEX_STYLE_ENABLE'             => 'Enable fancy styled buttons',
+	'BUTTONINDEX_STYLE_ENABLE_EXPLAIN'     => 'Gives all buttons a fancy border radius.',
+	'BUTTONINDEX_UCP_ENABLE'               => 'Enable ucp buttons',
+	'BUTTONINDEX_UCP_ENABLE_EXPLAIN'       => 'Enables ucp buttons with an animated fade to site buttons.',
+	'BUTTONINDEX_IMAGE_ENABLE'             => 'Enable images in site buttons',
+	'BUTTONINDEX_IMAGE_ENABLE_EXPLAIN'     => 'Enable to show images instead of icons in the site buttons.',
+	'BUTTONINDEX_IMAGE_ERROR'              => 'The file %s failed to upload.',
+	'BUTTONINDEX_IMAGE_FILE_ERROR'         => 'The file %s failed.',
+	'BUTTONINDEX_IMAGE_DELETED'            => 'Deleted image',
+	'BUTTONINDEX_IMAGES_SECTION'           => 'Image section',
+	'BUTTONINDEX_IMAGE_UPLOAD'             => 'Upload image/icon',
+	'BUTTONINDEX_IMAGE_UPLOAD_EXPLAIN'     => 'Allowed: %s',
+	'BUTTONINDEX_IMAGE_FOLDER'             => 'Image folder',
+	'BUTTONINDEX_IMAGE_FOLDER_EXPLAIN'     => 'Change image folder.',
+	'BUTTONINDEX_FLAGS'                    => 'Find flags here',
+	'BUTTONINDEX_BOX_ENABLE'               => 'Enable forabg wrapper',
+	'BUTTONINDEX_BOX_ENABLE_EXPLAIN'       => 'Wraps the buttons in a forabg class div.',
+	'BUTTONINDEX_COLLAPSE_ENABLE'          => 'Enable buttons collapse',
+	'BUTTONINDEX_COLLAPSE_ENABLE_EXPLAIN'  => 'Collapse the buttons in the wrapper.',
+]);

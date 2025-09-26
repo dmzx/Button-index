@@ -2,7 +2,7 @@
 /**
 *
 * @package phpBB Extension - Button index
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -15,13 +15,18 @@ class acp_buttonindex_module
 
 	function main($id, $mode)
 	{
-		global $phpbb_container, $user;
+		global $phpbb_container, $user, $request;
 
 		// Get an instance of the admin controller
 		$admin_controller = $phpbb_container->get('dmzx.buttonindex.admin.controller');
 
 		// Make the $u_action url available in the admin controller
 		$admin_controller->set_page_url($this->u_action);
+
+		if ($request->is_set_post('buttonindeximagefolder'))
+		{
+			$admin_controller->rename_folder();
+		}
 
 		switch ($mode)
 		{

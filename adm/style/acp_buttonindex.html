@@ -1,56 +1,195 @@
-<!-- INCLUDE overall_header.html -->
+{% INCLUDE 'overall_header.html' %}
+{% INCLUDECSS '@dmzx_buttonindex/css/buttonindex_acp.css' %}
+{% if ACP_DARK_STYLE %} {% INCLUDECSS '@dmzx_buttonindex/css/buttonindex_dark_acp.css' %}{% endif %}
 
-<h1>{L_ACP_BUTTONINDEX_TITLE}</h1>
+<h1>{{ lang('ACP_BUTTONINDEX_TITLE') }}</h1>
 
-<p><img src="https://img.shields.io/badge/{{ lang('Version') }}-{{ BUTTONINDEX_VERSION }}-green.svg?style=plastic" /></p>
+<p><img src="https://img.shields.io/badge/{{ lang('BUTTONINDEX_VERSION') }}-{{ BUTTONINDEX_VERSION }}-green.svg?style=plastic" /></p>
 
-<form id="acp_buttonindex" method="post" action="{U_ACTION}">
-	<fieldset>
-		<legend>{L_ACP_BUTTONINDEX_CONFIG}</legend>
-		<dl>
-			<dt>
-				<label for="buttonindex_enable">{L_BUTTONINDEX_ENABLE}{L_COLON}</label><br />
-				<span>{L_BUTTONINDEX_ENABLE_EXPLAIN}</span></dt>
-			</dt>
-			<dd>
-				<label><input type="radio" class="radio" id="buttonindex_enable" name="buttonindex_enable" value="1" <!-- IF BUTTONINDEX_ENABLE -->checked="checked"<!-- ENDIF -->/> {L_YES}</label>
-				<label><input type="radio" class="radio" name="buttonindex_enable" value="0" <!-- IF not BUTTONINDEX_ENABLE -->checked="checked"<!-- ENDIF --> /> {L_NO}</label>
-			</dd>
-		</dl>
-		<dl>
-			<dt>
-				<label for="buttonindex_respository">{L_BUTTONINDEX_REPOSITORY}{L_COLON}</label><br />
-				<span>{L_BUTTONINDEX_REPOSITORY_EXPLAIN}</span>
-			</dt>
-			<dd>
-				<b>{L_BUTTONINDEX_REPOSITORY} <span style="margin-left:210px;">{L_BUTTONINDEX_REPOSITORY_TEXT}</span></b>
-				<!-- BEGIN buttonindex -->
-				<p id="buttonindex">
-					<input name="buttonindex[]" type="text" value="{buttonindex.BUTTONINDEX}" size="40" placeholder="{L_BUTTONINDEX_PLACEHOLDER}">
-					<input name="buttonindex_text[]" type="text" value="{buttonindex.BUTTONINDEX_TEXT}" size="30" placeholder="{L_BUTTONINDEX_PLACEHOLDER_NAME}">
-				</p>
-				<!-- END buttonindex -->
+{% if S_ERROR %}
+	<div class="errorbox">
+		<h3>{{ lang('WARNING') }}</h3>
+		<p>{{ ERROR_MSG }}</p>
+	</div>
+{% endif %}
+
+<a id="maincontent"></a>
+
+<div class="forms-container">
+	<form id="acp_buttonindex" name="acp_buttonindex" method="post" action="{{ U_ACTION }}">
+		<fieldset>
+			<legend><i class="icon fa-cog fa-lg" aria-hidden="true"></i> {{ lang('ACP_BUTTONINDEX_CONFIG') }}</legend>
+			<dl>
+				<dt>
+					<label for="buttonindex_enable">{{ lang('BUTTONINDEX_ENABLE') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_ENABLE_EXPLAIN') }}</span></dt>
+				</dt>
 				<dd>
-					<input value="{L_BUTTONINDEX_MORE_LINKS}" onclick="add_this('buttonindex').value" type="button">
+					<label><input type="radio" name="buttonindex_enable" value="1"{% if S_BUTTONINDEX_ENABLE %} checked{% endif %}> {{ lang('YES') }}</label>
+					<label><input type="radio" name="buttonindex_enable" value="0"{% if not S_BUTTONINDEX_ENABLE %} checked{% endif %}> {{ lang('NO') }}</label>
 				</dd>
-			</dd>
-		</dl>
-	</fieldset>
-	<p class="submit-buttons">
-		{S_FORM_TOKEN}
-		<input class="button1" type="submit" id="submit" name="submit" value="{L_SUBMIT}" />&nbsp;
-		<input class="button2" type="reset" id="reset" name="reset" value="{L_RESET}" />
-	</p>
-</form>
+			</dl>
+			<dl>
+				<dt>
+					<label for="buttonindex_style_enable">{{ lang('BUTTONINDEX_STYLE_ENABLE') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_STYLE_ENABLE_EXPLAIN') }}</span></dt>
+				</dt>
+				<dd>
+					<label><input type="radio" name="buttonindex_style_enable" value="1"{% if S_BUTTONINDEX_STYLE_ENABLE %} checked{% endif %}> {{ lang('YES') }}</label>
+					<label><input type="radio" name="buttonindex_style_enable" value="0"{% if not S_BUTTONINDEX_STYLE_ENABLE %} checked{% endif %}> {{ lang('NO') }}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="buttonindex_ucp_enable">{{ lang('BUTTONINDEX_UCP_ENABLE') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_UCP_ENABLE_EXPLAIN') }}</span></dt>
+				</dt>
+				<dd>
+					<label><input type="radio" name="buttonindex_ucp_enable" value="1"{% if S_BUTTONINDEX_UCP_ENABLE %} checked{% endif %}> {{ lang('YES') }}</label>
+					<label><input type="radio" name="buttonindex_ucp_enable" value="0"{% if not S_BUTTONINDEX_UCP_ENABLE %} checked{% endif %}> {{ lang('NO') }}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="buttonindex_image_enable">{{ lang('BUTTONINDEX_IMAGE_ENABLE') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_IMAGE_ENABLE_EXPLAIN') }}</span></dt>
+				</dt>
+				<dd>
+					<label><input type="radio" name="buttonindex_image_enable" value="1"{% if S_BUTTONINDEX_IMAGE_ENABLE %} checked{% endif %} onchange="toggleFavFields(true)"> {{ lang('YES') }}</label>
+					<label><input type="radio" name="buttonindex_image_enable" value="0"{% if not S_BUTTONINDEX_IMAGE_ENABLE %} checked{% endif %} onchange="toggleFavFields(false)"> {{ lang('NO') }}</label>
+				</dd>
+			</dl>
+			<dl>
+				<dt>
+					<label for="buttonindex_box_enable">{{ lang('BUTTONINDEX_BOX_ENABLE') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_BOX_ENABLE_EXPLAIN') }}</span></dt>
+				</dt>
+				<dd>
+					<label><input type="radio" name="buttonindex_box_enable" value="1"{% if S_BUTTONINDEX_BOX_ENABLE %} checked{% endif %}> {{ lang('YES') }}</label>
+					<label><input type="radio" name="buttonindex_box_enable" value="0"{% if not S_BUTTONINDEX_BOX_ENABLE %} checked{% endif %}> {{ lang('NO') }}</label>
+				</dd>
+			</dl>
+			{% if S_BUTTONINDEX_BOX_ENABLE %}
+			<dl>
+				<dt>
+					<label for="buttonindex_collapse_enable">{{ lang('BUTTONINDEX_COLLAPSE_ENABLE') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_COLLAPSE_ENABLE_EXPLAIN') }}</span></dt>
+				</dt>
+				<dd>
+					<label><input type="radio" name="buttonindex_collapse_enable" value="1"{% if S_BUTTONINDEX_COLLAPSE_ENABLE %} checked{% endif %}> {{ lang('YES') }}</label>
+					<label><input type="radio" name="buttonindex_collapse_enable" value="0"{% if not S_BUTTONINDEX_COLLAPSE_ENABLE %} checked{% endif %}> {{ lang('NO') }}</label>
+				</dd>
+			</dl>
+			{% endif %}
+			<p class="submit-buttons">
+				<input class="button1" type="submit" name="enable_submit" value="{{ lang('SUBMIT') }}" />
+			</p>
+			{{ S_FORM_TOKEN }}
+		</fieldset>
+	</form>
+	<form id="acp_buttonindex" name="acp_buttonindex" method="post" action="{{ U_ACTION }}" enctype="multipart/form-data">
+		<fieldset>
+			<legend><i class="icon fa-cog fa-lg" aria-hidden="true"></i> {{ lang('BUTTONINDEX_IMAGES_SECTION') }}</legend>
+			<dl>
+				<dt><label for="buttonindex_image_folder">{{ lang('BUTTONINDEX_IMAGE_FOLDER') ~ lang('COLON') }}</label><br><span>{{ lang('BUTTONINDEX_IMAGE_FOLDER_EXPLAIN') }}</span></dt>
+				&nbsp;<span><a href="https://www.allwavingflags.com/" target="_blank">{{ lang('BUTTONINDEX_FLAGS') }}</a></span>
+				<dd>
+					<input class="keyword" type="text" name="buttonindex_image_folder" id="buttonindex_image_folder" value="{{ BUTTONINDEX_IMAGE_FOLDER }}" minlength="3" required title="{{ lang('BUTTONINDEX_IMAGE_FOLDER') }}" />
+					<input type="hidden" name="buttonindeximagefolder" value="buttonindex_image_folder" />
+				</dd>
+			</dl>
+			<dl>
+				<dt><label for="buttonindex_image_logo_upload">{{ lang('BUTTONINDEX_IMAGE_UPLOAD') ~ lang('COLON') }}</label><br><span>{{ BUTTONINDEX_ALLOWED_EXTENSIONS }}</span></dt>
+				<dd><input type="file" name="buttonindex_image_logo_upload" id="buttonindex_image_logo_upload"></dd>
+			</dl>
+
+			<!-- Display uploaded images -->
+			<div class="image-preview">
+				{% for image in IMAGE_FILES %}
+					<div class="image-item">
+						<img src="{{ image.path }}" alt="{{ image.name }}">
+						<p>{{ image.name }}</p>
+						<a href="{{ U_DELETE_IMAGE }}{{ image.name }}" class="delete-icon">{{ ICON_DELETE }}</a>
+					</div>
+				{% endfor %}
+			</div>
+			<p class="submit-buttons">
+				<input class="button1" type="submit" name="submit_images" value="{{ lang('SUBMIT') }}" />
+			</p>
+			{{ S_FORM_TOKEN }}
+
+		</fieldset>
+	</form>
+	<form id="acp_buttonindex" method="post" action="{{ U_ACTION }}">
+		<fieldset>
+			<legend><i class="icon fa-cog fa-lg" aria-hidden="true"></i> {% if BUTTONINDEX_ID %}{{ lang('BUTTONINDEX_EDIT') }}{% else %}{{ lang('BUTTONINDEX_ADD') }}{% endif %}</legend>
+			<dl>
+				<dt><label for="name">{{ lang('BUTTONINDEX_NAME') }}</label></dt>
+				<dd><input type="text" size="40" id="name" name="name"{% if BUTTONINDEX_TEXT %} value="{{ BUTTONINDEX_TEXT }}"{% endif %}></dd>
+			</dl>
+			<dl>
+				<dt><label for="url">{{ lang('BUTTONINDEX_URL') }}</label><br><span>{{ lang('BUTTONINDEX_URL_EXPLAIN') }}</span></dt>
+				<dd><input type="text" size="40" id="url" name="url"{% if BUTTONINDEX %} value="{{ BUTTONINDEX }}"{% endif %}></dd>
+			</dl>
+			<dl id="fav_field">
+				<dt><label for="favname">{{ lang('BUTTONINDEX_FAV') }}</label><br><span>{{ lang('BUTTONINDEX_FAV_EXPLAIN') }}</span></dt>
+				<dd><input type="text" size="40" id="fav" name="fav"{% if BUTTONINDEX_FAV %} value="{{ BUTTONINDEX_FAV }}"{% endif %}></dd>
+			</dl>
+
+			<p class="submit-buttons">
+				{% if BUTTONINDEX_ID %}<input type="hidden" name="edit" value="{{ BUTTONINDEX_ID }}">{% endif %}
+				<input class="button1" type="submit" name="submit" value="{{ lang('SUBMIT') }}" />
+				<input class="button2" type="reset" value="{{ lang('RESET') }}" />
+			</p>
+			{{ S_FORM_TOKEN }}
+		</fieldset>
+	</form>
+</div>
+
+<div class="buttonindex_acp zebra-table ">
+	<div class="thead">
+		<div class="tr">
+			<div class="th">{{ lang('BUTTONINDEX_NAME') }}</div>
+			<div class="th">{{ lang('BUTTONINDEX_URL_ACP') }}</div>
+			<div class="th" id="fav_header">{{ lang('BUTTONINDEX_FAV_ACP') }}</div>
+			<div class="th actions-column">{{ lang('ACTION') }}</div>
+		</div>
+	</div>
+	<div class="tbody">
+		{% for buttonindex in loops.buttonindex %}
+			<div class="tr">
+				<div class="td">{{ buttonindex.BUTTONINDEX_TEXT }}</div>
+				<div class="td">{{ buttonindex.BUTTONINDEX }}</div>
+				<div class="td fav_column">{{ buttonindex.BUTTONINDEX_FAV }}</div>
+				<div class="td actions-column">&nbsp;<a href="{{ buttonindex.U_EDIT }}">{{ ICON_EDIT }}</a>&nbsp;&nbsp;<a href="{{ buttonindex.U_DELETE }}" data-ajax="row_delete">{{ ICON_DELETE }}</a>&nbsp;</div>
+			</div>
+		{% else %}
+			<div class="tr">
+				<div class="td" colspan="4">{{ lang('BUTTONINDEX_NO_BUTTON') }}</div>
+			</div>
+		{% endfor %}
+	</div>
+</div>
 
 <script>
-function add_this(id)
-{
-	var tableRow = document.getElementById(id);
-	var tableRowClone = tableRow.cloneNode(true);
-	$('input', tableRowClone).val("");
-	tableRow.parentNode.appendChild(tableRowClone, tableRow.previousSibling);
+function toggleFavFields(enable) {
+	var favField = document.getElementById('fav_field');
+	var favHeader = document.getElementById('fav_header');
+	var favColumns = document.getElementsByClassName('fav_column');
+
+	if (enable) {
+		favField.style.display = '';
+		favHeader.style.display = '';
+		for (var i = 0; i < favColumns.length; i++) {
+			favColumns[i].style.display = '';
+		}
+	} else {
+		favField.style.display = 'none';
+		favHeader.style.display = 'none';
+		for (var i = 0; i < favColumns.length; i++) {
+			favColumns[i].style.display = 'none';
+		}
+	}
 }
+
+// Initial check on page load
+document.addEventListener('DOMContentLoaded', function() {
+	var buttonindexImageEnable = document.querySelector('input[name="buttonindex_image_enable"]:checked').value;
+	toggleFavFields(buttonindexImageEnable == '1');
+});
 </script>
 
-<!-- INCLUDE overall_footer.html -->

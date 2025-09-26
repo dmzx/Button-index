@@ -1,0 +1,127 @@
+/**
+*
+* @package phpBB Extension - Button Index
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
+
+.buttonindex_acp {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0 auto;
+}
+
+.buttonindex_acp .thead, .buttonindex_acp .tbody {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.buttonindex_acp .tr {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.buttonindex_acp .th, .buttonindex_acp .td {
+    flex: 1;
+    padding: 1px;
+    border: 1px solid #222222;
+    text-align: center;
+}
+
+.buttonindex_acp .thead .tr {
+    background-color: #f4f4f4;
+    font-weight: bold;
+}
+
+.buttonindex_acp .tbody .tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.buttonindex_acp .fav_column {
+    /* text-align: left; */
+}
+
+.buttonindex_acp .actions-column {
+    text-align: right;
+}
+
+.forms-container {
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    margin-bottom: -10px;
+}
+
+.forms-container form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+fieldset {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-height: 85% !important;
+}
+
+.submit-buttons {
+    margin-top: auto;
+    display: flex;
+    justify-content: center;
+}
+
+.image-preview {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 20px;
+    height: 140px; 
+    overflow: auto;
+}
+
+.image-item {
+    text-align: center;
+    flex: 1 1 160px; /* Adjust the size as needed */
+    position: relative;
+}
+
+.image-item img {
+    width: 12%;
+    object-fit: cover;
+}
+
+.delete-icon {
+    position: absolute;
+    top: 8px;
+    left: 25px;
+    color: #8e1515;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.submit-buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+
+@media (max-width: 800px) {
+    .forms-container {
+        flex-direction: column;
+    }
+
+    .buttonindex_acp .tr {
+        flex-direction: column;
+    }
+
+    .buttonindex_acp .th, .buttonindex_acp .td {
+        display: block;
+    }
+}
+

@@ -1,44 +1,53 @@
 {
 	"name": "dmzx/buttonindex",
 	"type": "phpbb-extension",
-	"description": "Adds Button index to your forum index.",
-	"homepage": "http://www.dmzx-web.net",
-	"version": "1.0.1",
-	"time": "2017-02-13",
+	"description": "Adds buttons to your forum index.",
+	"homepage": "https://www.dmzx-e.net",
+	"version": "1.0.3",
+	"time": "2025-02-18",
 	"keywords": [
 		"phpbb",
 		"extension",
-		"buttonindex"
+		"buttonindex",
+		"buttons"
 	],
-	"license": "GPL-2.0",
-	"authors": [
+	"license": "GPL-2.0-only",
+		"authors": [
 		{
 			"name": "dmzx",
-			"homepage": "http://www.dmzx-web.net",
+			"homepage": "https://www.dmzx-web.net",
 			"email": "info@dmzx-web.net",
 			"role": "Extension Developer"
 		},
 		{
 			"name": "martin",
-			"homepage": "http://www.martins.homelinux.net",
-			"role": "Extension Co-Developer"
+			"homepage": "https://www.martins-play-ground.uk",
+			"role": "Extension Developer"
+		},
+		{
+			"name": "Sniper_E",
+			"homepage": "https://www.sniper-e.net",
+			"role": "Extension Developer"
 		}
 	],
 	"require": {
-		"php": ">=5.3.3"
+		"php": ">=8.0",
+		"composer/installers": "~1.0.0",
+		"phpbb/phpbb": ">=3.3.0"
 	},
 	"require-dev": {
 		"phpbb/epv": "dev-master"
 	},
 	"extra": {
-		"display-name": "Button index",
+		"display-name": "Button Index",
 		"soft-require": {
-			"phpbb/phpbb": ">=3.2.0-a1,<3.3"
+			"phpbb/phpbb": ">=3.3.0"
 		},
 		"version-check": {
 			"host": "www.dmzx-web.net",
 			"directory": "/versions",
-			"filename": "buttonindex_version.json"
+			"filename": "buttonindex_version.json",
+			"ssl": true
 		}
 	}
 }

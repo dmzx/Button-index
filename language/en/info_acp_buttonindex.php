@@ -1,8 +1,8 @@
 <?php
 /**
 *
-* @package phpBB Extension - Button index
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @package phpBB Extension - Button Index
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -14,7 +14,7 @@ if (!defined('IN_PHPBB'))
 
 if (empty($lang) || !is_array($lang))
 {
-	$lang = array();
+	$lang = [];
 }
 // DEVELOPERS PLEASE NOTE
 //
@@ -32,10 +32,13 @@ if (empty($lang) || !is_array($lang))
 // ’ » “ ” …
 //
 
-$lang = array_merge($lang, array(
+$lang = array_merge($lang, [
 	//ACP
-	'ACP_BUTTONINDEX_TITLE'				=> 'Button index',
-	'ACP_BUTTONINDEX_CONFIG'			=> 'Settings',
+	'ACP_BUTTONINDEX_TITLE'				  => 'Button Index',
+	'ACP_BUTTONINDEX_CONFIG'			  => 'Settings',
 	//Log
-	'LOG_BUTTONINDEX_SAVE'				=> '<strong>Settings Button index changed</strong>' ,
-));
+	'LOG_ACP_BUTTONINDEX_SETTINGS'		  => '<strong>Settings Button-index saved</strong>',
+	'LOG_ACP_BUTTONINDEX_ADDED_BUTTON'	  => '<strong>Added Button-index button</strong>',
+	'LOG_ACP_BUTTONINDEX_UPDATED_BUTTON'  => '<strong>Edit Button-index button</strong>',
+	'LOG_ACP_BUTTONINDEX_IMAGES'		  => '<strong>Images settings Button-index saved</strong>',
+]);

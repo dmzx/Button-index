@@ -1,0 +1,15 @@
+/**
+*
+* @package phpBB Extension - Button Index
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
+
+.buttonindex_acp .thead .tr {
+    background-color: #333333;
+}
+
+.buttonindex_acp .tbody .tr:nth-child(even) {
+    background-color: #747474;
+}

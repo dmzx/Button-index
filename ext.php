@@ -1,8 +1,8 @@
 <?php
 /**
 *
-* @package phpBB Extension - Button index
-* @copyright (c) 2016 dmzx - http://www.dmzx-web.net
+* @package phpBB Extension - Button Index
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
 * @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
 *
 */
@@ -23,6 +23,6 @@ class ext extends \phpbb\extension\base
 	public function is_enableable()
 	{
 		$config = $this->container->get('config');
-		return version_compare($config['version'], '3.2.0-a1', '>=');
+		return version_compare($config['version'], '3.3.0', '>=');
 	}
 }

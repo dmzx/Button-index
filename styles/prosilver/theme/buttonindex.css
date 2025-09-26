@@ -1,40 +1,96 @@
-.buttons {
+/**
+*
+* @package phpBB Extension - Button Index
+* @copyright (c) 2025 dmzx - https://www.dmzx-web.net/
+* @license http://opensource.org/licenses/gpl-2.0.php GNU General Public License v2
+*
+*/
+
+.forabg + .action-bar {
+	margin-top: 0em;
+}
+
+.slideshow-container .nav {
+	float: left;
+	margin-left: 1px;
+	margin-bottom: 7px;
+}
+
+.slideshow-container .dots, .mySlides {
+	display: none;
+}
+
+li.row {
+	padding: 0 7px;
+}
+
+.mySlides ul {
+	width:100%;
+	max-height:37px;
+	overflow-x:hidden;
+	overflow-y:auto;
+}
+
+.mySlides li {
+	float: left;
 	display: inline-block;
-	padding: 2px 8px;
-	font-size: 13px;
-	font-weight: normal;
-	font-family: "Open Sans", "Droid Sans", Verdana, Arial, Helvetica;
-	line-height: 1.4;
-	text-align: center;
-	white-space: nowrap;
-	cursor: pointer;
-	-webkit-user-select: none;
-	   -moz-user-select: none;
-	    -ms-user-select: none;
-	        user-select: none;
-	border: 1px solid transparent;
-	border-radius: 4px;
-	border-color: #C7C3BF;
-	background-color: #E9E9E9; /* Old browsers */ /* FF3.6+ */
-	background-image: -webkit-linear-gradient(top, #FFFFFF 0%, #E9E9E9 100%);
-	background-image: linear-gradient(to bottom, #FFFFFF 0%,#E9E9E9 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#FFFFFF', endColorstr='#E9E9E9',GradientType=0 ); /* IE6-9 */
-	box-shadow: 0 0 0 1px #FFFFFF inset;
-	-webkit-box-shadow: 0 0 0 1px #FFFFFF inset;
-	margin-bottom: 5px;
-	margin-top: 1px;
+	font-size: 0.9em !important;
 }
-.buttons:hover,
-.buttons:focus {
-	border-color: #0A8ED0;
-	background-color: #FFFFFF; /* Old browsers */ /* FF3.6+ */
-	background-image: -webkit-linear-gradient(top, #E9E9E9 0%, #FFFFFF 100%);
-	background-image: linear-gradient(to bottom, #E9E9E9 0%,#FFFFFF 100%); /* W3C */
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E9E9E9', endColorstr='#FFFFFF',GradientType=0 ); /* IE6-9 */
-	text-shadow: 1px 1px 0 #FFFFFF, -1px -1px 0 #FFFFFF, -1px -1px 0 rgba(188, 42, 77, 0.2);
-	text-decoration: none;
-    outline: none;
+
+.mySlides li.row {
+	padding: 6px 6px 0  !important;
 }
+
+.mySlides li a.button {
+	padding: 1px 6px  !important;
+	margin: 8px 5px 0 0 !important;
+}
+
+.mySlides li a img {
+	height: 13px;
+	max-width: 20px;
+	margin-bottom: 0px;
+	vertical-align: middle;
+}
+
+.mySlides.fade {
+	animation-name: fade;
+	animation-duration: 16s;
+}
+
+@keyframes fade {
+      0% { opacity: 0.0; }
+     18% { opacity: 1.0; }
+     93% { opacity: 1.0; }
+     98% { opacity: 0.0; }
+    100% { opacity: 0.0; }
+}
+
 .action-bar.compact a.mark-read.rightside {
 	display: none !important;
+}
+
+a.button.rightside {
+	float:right;
+	padding: 2px 6px !important;
+	margin-top: 6px  !important;
+	margin-bottom: 2px !important;
+}
+
+a.button.special {
+	border-radius: 12px 0 12px 0;
+}
+
+.ucp_icon{
+   font-size: 11px !important;
+}
+
+@media all and (min-width : 350px) and (max-width : 700px) { 
+	.mySlides ul {
+	width:55%;
+	max-height:30px;
+	overflow-x:hidden;
+	overflow-y:auto;
+	margin-top: -34px;
+   }
 }
